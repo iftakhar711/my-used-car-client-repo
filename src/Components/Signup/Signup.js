@@ -15,10 +15,15 @@ const Signup = () => {
 
     const handleSubmit = event => {
         event.preventDefault()
+
         const name = event.target.name.value
         const email = event.target.email.value
         const password = event.target.password.value
+        const role = event.target.role.value
         const image = event.target.image.files[0]
+
+        //save user in database
+
 
         const formData = new FormData()
         formData.append('image', image)
@@ -33,7 +38,9 @@ const Signup = () => {
                 // Create User
                 createUser(email, password)
                     .then(result => {
-                        authuser(result?.user)
+                        authuser((result?.user), (role))
+
+                        console.log(result);
                         updateUserProfile(name, data.data.display_url)
                             .then(
                                 toast.success('user created succesfully'),
@@ -104,6 +111,18 @@ const Signup = () => {
                                     data-temp-mail-org='0'
                                 />
                             </div>
+
+                            <div>
+                                <label htmlFor='image' className='block mb-2 text-sm'>
+                                    Select Role:
+                                </label>
+                                <select name="role" id="cars">
+                                    <option value="buyer" defaultValue>buyer</option>
+                                    <option value="seller">seller</option>
+                                </select>
+
+                            </div>
+
                             <div>
                                 <label htmlFor='image' className='block mb-2 text-sm'>
                                     Select Image:

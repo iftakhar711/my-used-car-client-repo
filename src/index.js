@@ -5,6 +5,7 @@ import App from './App';
 import { Toaster } from 'react-hot-toast'
 import reportWebVitals from './reportWebVitals';
 import AuthProvider from './Contexts/AuthProvider';
+import 'react-day-picker/dist/style.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
