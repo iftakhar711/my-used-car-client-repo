@@ -11,8 +11,9 @@ import Signin from "../Components/Signup/Signin";
 import Signup from "../Components/Signup/Signup";
 import Dashboardlay from "../Layout/Dashboardlay";
 import Main from "../Layout/Main";
-// import AdminRoute from "./AdminRoute";
+import AdminRoute from "./AdminRoute";
 import Privaterouet from "./Privaterouets/Privaterouet"
+import SellerRoute from "./SellerRoute";
 
 const router = createBrowserRouter([
     {
@@ -55,18 +56,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addproduct',
-                element: <AddProduct></AddProduct>
-                // element: <AdminRoute><AddProduct></AddProduct></AdminRoute>
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
             },
             {
                 path: '/dashboard/allbuyer',
-                element: <Allbuyer></Allbuyer>
-                // element: <AdminRoute><Allbuyer></Allbuyer></AdminRoute>
+                element: <AdminRoute><Allbuyer></Allbuyer></AdminRoute>
             },
             {
                 path: '/dashboard/allseller',
-                element: <Allseller></Allseller>
-                // element: <AdminRoute><Allseller></Allseller></AdminRoute>
+                element: <AdminRoute><Allseller></Allseller></AdminRoute>
             },
 
 
