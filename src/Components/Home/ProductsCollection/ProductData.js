@@ -24,9 +24,7 @@ const ProductData = ({ product }) => {
                     <p className=' font-bold '>Seller name: {sellername}</p>
                 </div>
 
-                <div className="card-actions">
-                    <button className="btn btn-primary">order now</button>
-                </div>
+                <label htmlFor="my-modal-6" className="btn">book now</label>
             </div>
         </div>
     );

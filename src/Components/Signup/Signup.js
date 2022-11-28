@@ -3,8 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import Spinner from '../Spinner/Spinner'
 import { AuthContext } from '../../Contexts/AuthProvider'
-import { authuser } from '../../Auntapi/Authapi'
 import signinimage from '../../images/2853458.jpg'
+
 
 const Signup = () => {
     const { createUser, updateUserProfile, loading, setLoading, signInWithGoogle } = useContext(AuthContext)
@@ -13,16 +13,17 @@ const Signup = () => {
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
 
+
+
     const handleSubmit = event => {
         event.preventDefault()
 
         const name = event.target.name.value
         const email = event.target.email.value
         const password = event.target.password.value
-        const role = event.target.role.value
         const image = event.target.image.files[0]
+        const role = event.target.role.value
 
-        //save user in database
 
 
         const formData = new FormData()
@@ -38,8 +39,7 @@ const Signup = () => {
                 // Create User
                 createUser(email, password)
                     .then(result => {
-                        authuser((result?.user), (role))
-
+                        saveuser(name, email, role)
                         console.log(result);
                         updateUserProfile(name, data.data.display_url)
                             .then(
@@ -55,12 +55,25 @@ const Signup = () => {
                     })
             })
             .catch(err => toast.error(err))
+
+        const saveuser = (name, email, role) => {
+            const user = { name, email, role }
+            console.log(user);
+            fetch('http://localhost:5000/users', {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+                .then(res => res.json())
+                .then(data => console.log(data))
+        }
     }
 
     const handleGoogleSignin = () => {
         signInWithGoogle().then(result => {
             console.log(result.user)
-            authuser(result?.user)
             navigate(from, { replace: true })
         })
     }

@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Contexts/AuthProvider'
 import Spinner from '../Spinner/Spinner'
 import signinimage from '../../images/2853458.jpg'
-import { authuser } from '../../Auntapi/Authapi'
+
 
 const Signin = () => {
     const [userEmail, setUserEmail] = useState('')
@@ -22,7 +22,6 @@ const Signin = () => {
         signin(email, password)
             .then(result => {
                 toast.success('Login Successful.....!')
-                authuser(result.user)
                 navigate(from, { replace: true })
             })
             .catch(err => {
@@ -36,7 +35,6 @@ const Signin = () => {
         signInWithGoogle()
             .then(result => {
                 console.log(result.user)
-                authuser(result.user)
                 navigate(from, { replace: true })
             })
     }
