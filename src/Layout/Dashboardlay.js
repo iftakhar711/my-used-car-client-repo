@@ -15,10 +15,9 @@ const Dashboardlay = () => {
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 text-base-content gap-2">
 
-                        <li className=' bg-base-300'><Link to="/dashboard/addproduct">Add Product</Link></li>
                         <li className=' bg-base-300'><Link to="/dashboard/allseller">All Seller</Link></li>
                         <li className=' bg-base-300'><Link to="/dashboard/allbuyer">All Buyer</Link></li>
-
+                        <li className=' bg-base-300'><Link to="/dashboard/addproduct">Add Product</Link></li>
                     </ul>
 
                 </div>
