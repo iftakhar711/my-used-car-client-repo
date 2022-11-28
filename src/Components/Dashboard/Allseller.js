@@ -1,10 +1,19 @@
 import React from 'react';
 import toast from 'react-hot-toast';
-import { useLoaderData } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+// import { useLoaderData } from 'react-router-dom';
 
 const Allseller = () => {
-    const allseller = useLoaderData()
-    console.log(allseller);
+    // const allseller = useLoaderData()
+
+    const { data: allseller = [], refetch } = useQuery({
+        queryKey: ['allseller'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/seller');
+            const data = await res.json();
+            return data;
+        }
+    });
 
     const handleMakeAdmin = id => {
         fetch(`http://localhost:5000/users/admin/${id}`, {
@@ -17,7 +26,7 @@ const Allseller = () => {
             .then(data => {
                 if (data.modifiedCount > 0) {
                     toast.success('Make admin successful.')
-
+                    refetch()
                 }
             })
     }

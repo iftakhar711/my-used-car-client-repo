@@ -1,12 +1,12 @@
 import React from 'react';
 import toast from 'react-hot-toast';
-import { useLoaderData } from 'react-router-dom';
+// import { useLoaderData } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 const Allbuyer = () => {
-    const allbuyer = useLoaderData()
-    const { data: users = [], refetch } = useQuery({
-        queryKey: ['users'],
+    // const allbuyer = useLoaderData()
+    const { data: allbuyer = [], refetch } = useQuery({
+        queryKey: ['allbuyer'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/buyer');
             const data = await res.json();
