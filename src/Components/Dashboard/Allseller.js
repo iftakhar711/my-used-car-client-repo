@@ -1,11 +1,9 @@
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
-// import { useLoaderData } from 'react-router-dom';
+
 
 const Allseller = () => {
-    // const allseller = useLoaderData()
-
     const { data: allseller = [], refetch } = useQuery({
         queryKey: ['allseller'],
         queryFn: async () => {
@@ -52,7 +50,7 @@ const Allseller = () => {
                                 <th>1</th>
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
-                                <td>{seller?.role !== 'admin' && <button onClick={() => handleMakeAdmin(seller._id)} className='px-4 py-2 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'>Make Admin</button>}</td>
+                                <td>{seller?.admin !== 'admin' && <button onClick={() => handleMakeAdmin(seller._id)} className='px-4 py-2 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'>Make Admin</button>}</td>
                                 <td><button className='px-4 py-2 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'>Delete</button></td>
                             </tr>
                         </tbody>

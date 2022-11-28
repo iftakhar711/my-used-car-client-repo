@@ -55,12 +55,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allbuyer',
                 element: <Allbuyer></Allbuyer>,
-                // loader: () => fetch('http://localhost:5000/buyer')
             },
             {
                 path: '/dashboard/allseller',
                 element: <Allseller></Allseller>,
-                // loader: () => fetch('http://localhost:5000/seller')
+            },
+            {
+                path: '/dashboard/myproduct',
+                element: <Allseller></Allseller>,
             },
 
 
