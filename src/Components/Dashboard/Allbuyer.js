@@ -6,14 +6,14 @@ const Allbuyer = () => {
     const { data: allbuyer = [], refetch } = useQuery({
         queryKey: ['allbuyer'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/buyer');
+            const res = await fetch('https://used-products-server-iftakhar711.vercel.app/buyer');
             const data = await res.json();
             return data;
         }
     });
 
     const handleMakeAdmin = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://used-products-server-iftakhar711.vercel.app/users/admin/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

@@ -5,7 +5,7 @@ import Products from './Products';
 const ProductsCat = () => {
     const [productcat, setproductcat] = useState()
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://used-products-server-iftakhar711.vercel.app/products')
             .then(res => res.json())
             .then(data => setproductcat(data));
     }, [])

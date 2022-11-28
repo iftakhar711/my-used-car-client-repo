@@ -58,7 +58,7 @@ const Signup = () => {
         const saveuser = (name, email, role) => {
             const user = { name, email, role }
             console.log(user);
-            fetch('http://localhost:5000/users', {
+            fetch('https://used-products-server-iftakhar711.vercel.app/users', {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
