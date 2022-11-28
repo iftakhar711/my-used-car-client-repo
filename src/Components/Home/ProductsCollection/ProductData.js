@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ProductData = ({ product }) => {
-    const { sellername, productname, location, resaleprice, originalprice, used, image, publishDate } = product
+const ProductData = ({ product, setProinfo }) => {
+    const { sellername, productname, location, resaleprice, originalprice, used, image, publishDate } = product;
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
@@ -24,7 +24,9 @@ const ProductData = ({ product }) => {
                     <p className=' font-bold '>Seller name: {sellername}</p>
                 </div>
 
-                <label htmlFor="my-modal-6" className="btn">book now</label>
+                <div className="card-actions">
+                    <label htmlFor="my-modal-3" className="btn" onClick={() => setProinfo(product)}>open modal</label>
+                </div>
             </div>
         </div>
     );

@@ -25,7 +25,6 @@ const Signup = () => {
         const role = event.target.role.value
 
 
-
         const formData = new FormData()
         formData.append('image', image)
         const url = "https://api.imgbb.com/1/upload?key=5ae7ed7abac299b40b1c23036fdb5823"
@@ -40,7 +39,7 @@ const Signup = () => {
                 createUser(email, password)
                     .then(result => {
                         saveuser(name, email, role)
-                        console.log(result);
+
                         updateUserProfile(name, data.data.display_url)
                             .then(
                                 toast.success('user created succesfully'),
@@ -73,7 +72,6 @@ const Signup = () => {
 
     const handleGoogleSignin = () => {
         signInWithGoogle().then(result => {
-            console.log(result.user)
             navigate(from, { replace: true })
         })
     }
