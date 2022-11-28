@@ -3,10 +3,12 @@ import Blogs from "../Components/Blogs/Blogs";
 import AddProduct from "../Components/Dashboard/AddProduct";
 import Errorpage from "../Components/Errorpage/Errorpage";
 import Home from "../Components/Home/Home/Home";
+import Product from "../Components/Home/ProductsCollection/Product";
 import Signin from "../Components/Signup/Signin";
 import Signup from "../Components/Signup/Signup";
 import Dashboardlay from "../Layout/Dashboardlay";
 import Main from "../Layout/Main";
+import Privaterouet from "./Privaterouets/Privaterouet"
 
 const router = createBrowserRouter([
     {
@@ -30,6 +32,12 @@ const router = createBrowserRouter([
                 path: '/blogs',
                 element: <Blogs></Blogs>
             },
+            {
+                path: '/products/:category',
+                element: <Privaterouet><Product></Product></Privaterouet>,
+                loader: ({ params }) => fetch(`http://localhost:5000/products/${params?.category}`)
+            },
+
         ]
     },
     {
@@ -41,6 +49,8 @@ const router = createBrowserRouter([
                 path: '/dashboard',
                 element: <AddProduct></AddProduct>
             },
+
+
 
         ]
     }

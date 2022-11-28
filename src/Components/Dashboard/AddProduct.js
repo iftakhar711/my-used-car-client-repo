@@ -1,15 +1,15 @@
+import { format } from 'date-fns';
 import React, { useContext, useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Contexts/AuthProvider'
 
-// import { format } from 'date-fns';
-
-
 
 const AddProduct = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const { user } = useContext(AuthContext)
+    const date = format(selectedDate, 'PP');
+
 
     const handelAdd = event => {
         event.preventDefault()
@@ -21,7 +21,8 @@ const AddProduct = () => {
             resaleprice: event.target.resaleprice.value,
             originalprice: event.target.originalprice.value,
             used: event.target.used.value,
-            image: event.target.image.value
+            image: event.target.image.value,
+            publishDate: date
         }
         console.log(productInfo);
 
@@ -43,12 +44,15 @@ const AddProduct = () => {
                     toast.error(data.message);
                 }
             })
+        fetch(`http://localhost:5000/products/${productInfo?.category}`)
+            .then(res => res.json())
+            .then(data => console.log(data))
     }
 
     return (
-        <div className=' grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 items-center justify-center'>
-
+        <>
             <DayPicker
+                className=' hidden'
                 mode='single'
                 selected={selectedDate}
                 onSelect={setSelectedDate}
@@ -79,6 +83,12 @@ const AddProduct = () => {
                                 />
                             </div>
                             <div>
+                                <input type="text"
+                                    value={date}
+                                    className="input w-full border rounded-md border-gray-300" />
+                            </div>
+
+                            <div>
                                 <label htmlFor='name' className='block mb-2 text-sm'>
                                     Product Name
                                 </label>
@@ -104,13 +114,14 @@ const AddProduct = () => {
                                     data-temp-mail-org='0'
                                 />
                             </div>
+
                             <div>
                                 <label htmlFor='image' className='block mb-2 text-sm'>
                                     Set Img Url
                                 </label>
                                 <input
                                     required
-                                    type='text'
+                                    type="url"
                                     id='image'
                                     name='image'
                                     placeholder='url'
@@ -122,9 +133,9 @@ const AddProduct = () => {
                                 <label htmlFor='image' className='block mb-2 text-sm'>
                                     Select Category :
                                 </label>
-                                <select name="category" id="cars">
-                                    <option value="luxury car" defaultValue>luxury car</option>
-                                    <option value="normal car">normal car</option>
+                                <select name="category" id="cars" required>
+                                    <option value="luxurycar">luxurycar</option>
+                                    <option value="normalcar">normalcar</option>
                                     <option value="van">van</option>
                                 </select>
 
@@ -170,6 +181,7 @@ const AddProduct = () => {
                                         data-temp-mail-org='0'
                                     />
                                 </div>
+
                             </div>
 
                         </div>
@@ -179,7 +191,7 @@ const AddProduct = () => {
                                     type='submit'
                                     className='w-full px-8 py-3 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'
                                 >
-                                    Add
+                                    Add Product
                                 </button>
                             </div>
                         </div>
@@ -188,7 +200,7 @@ const AddProduct = () => {
 
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
