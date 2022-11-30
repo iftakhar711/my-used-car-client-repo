@@ -40,7 +40,7 @@ const router = createBrowserRouter([
             {
                 path: '/products/:category',
                 element: <Privaterouet><Product></Product></Privaterouet>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params?.category}`)
+                loader: ({ params }) => fetch(`https://products-server-eta.vercel.app/products/${params?.category}`)
             },
 
         ]

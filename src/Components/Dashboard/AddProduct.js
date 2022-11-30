@@ -26,7 +26,7 @@ const AddProduct = () => {
         }
 
         //post product data
-        fetch('http://localhost:5000/products', {
+        fetch('https://products-server-eta.vercel.app/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -43,7 +43,7 @@ const AddProduct = () => {
                     toast.error(data.message);
                 }
             })
-        fetch(`http://localhost:5000/products/${productInfo?.category}`)
+        fetch(`https://products-server-eta.vercel.app/products/${productInfo?.category}`)
             .then(res => res.json())
             .then(data => console.log(data))
     }

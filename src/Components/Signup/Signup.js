@@ -16,7 +16,7 @@ const Signup = () => {
     const saveuser = (name, email, role) => {
         const user = { name, email, role }
         console.log(user);
-        fetch('http://localhost:5000/users', {
+        fetch('https://products-server-eta.vercel.app/users', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

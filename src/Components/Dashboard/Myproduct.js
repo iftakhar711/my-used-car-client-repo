@@ -4,7 +4,7 @@ import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Myproduct = () => {
     const { user } = useContext(AuthContext)
-    const url = `http://localhost:5000/bookings/${user?.email}`
+    const url = `https://products-server-eta.vercel.app/bookings/${user?.email}`
     const { data: myproduct = [] } = useQuery({
         queryKey: ['myproduct', user?.email],
         queryFn: async () => {
