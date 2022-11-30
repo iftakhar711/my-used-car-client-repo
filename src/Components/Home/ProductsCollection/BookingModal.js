@@ -25,7 +25,7 @@ const BookingModal = ({ proinfo }) => {
             phone
         }
 
-        fetch('https://used-products-server-iftakhar711.vercel.app/bookings', {
+        fetch('http://localhost:5000/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

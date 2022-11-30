@@ -6,14 +6,14 @@ const Allbuyer = () => {
     const { data: allbuyer = [], refetch } = useQuery({
         queryKey: ['allbuyer'],
         queryFn: async () => {
-            const res = await fetch('https://used-products-server-iftakhar711.vercel.app/buyer');
+            const res = await fetch('http://localhost:5000/buyer');
             const data = await res.json();
             return data;
         }
     });
 
     const handleMakeAdmin = id => {
-        fetch(`https://used-products-server-iftakhar711.vercel.app/users/admin/${id}`, {
+        fetch(`http://localhost:5000/users/admin/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -25,6 +25,16 @@ const Allbuyer = () => {
                     toast.success('Make admin successful.')
                     refetch()
                 }
+            })
+    }
+    const handleDeleteBuyer = id => {
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('Delete succesfully...')
+                refetch()
             })
     }
 
@@ -42,7 +52,7 @@ const Allbuyer = () => {
                     </tr>
                 </thead>
             </table>
-            {
+            {allbuyer &&
                 allbuyer?.map(buyer =>
                     <table className="table w-full">
 
@@ -51,8 +61,8 @@ const Allbuyer = () => {
                                 <th>1</th>
                                 <td>{buyer.name}</td>
                                 <td>{buyer.email}</td>
-                                <td>{buyer?.admin !== 'admin' && <button onClick={() => handleMakeAdmin(buyer._id)} className='px-4 py-2 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'>Make Admin</button>}</td>
-                                <td><button className='px-4 py-2 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'>Delete</button></td>
+                                <td>{buyer?.role !== 'admin' && <button onClick={() => handleMakeAdmin(buyer._id)} className='px-4 py-2 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'>Make Admin</button>}</td>
+                                <td>{buyer?.role === 'buyer' && <button onClick={() => handleDeleteBuyer(buyer._id)} className='px-4 py-2 font-semibold rounded-md bg-gray-900 hover:bg-gray-700 hover:text-white text-gray-100'>Delete</button>}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -6,11 +6,11 @@ const useSeller = email => {
     const [isSellerLoading, setisSellerLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`https://used-products-server-iftakhar711.vercel.app/${email}`)
+            fetch(`http://localhost:5000/seller/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    setIsSeller(data.isAdmin);
+                    setIsSeller(data.isSeller);
                     setisSellerLoading(false);
                 })
         }

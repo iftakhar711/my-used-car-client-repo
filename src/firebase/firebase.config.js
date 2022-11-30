@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyC9t-tH5asM8S3cuQrwbQJBDbA0aa-L1nI",
-    authDomain: "used-products-5aba3.firebaseapp.com",
-    projectId: "used-products-5aba3",
-    storageBucket: "used-products-5aba3.appspot.com",
-    messagingSenderId: "270563469865",
-    appId: "1:270563469865:web:6feaf0b41e326e2d4aca38"
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId
 };
 
 // Initialize Firebase

@@ -24,10 +24,9 @@ const AddProduct = () => {
             image: event.target.image.value,
             publishDate: date
         }
-        console.log(productInfo);
 
         //post product data
-        fetch('https://used-products-server-iftakhar711.vercel.app/products', {
+        fetch('http://localhost:5000/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -44,7 +43,7 @@ const AddProduct = () => {
                     toast.error(data.message);
                 }
             })
-        fetch(`https://used-products-server-iftakhar711.vercel.app/${productInfo?.category}`)
+        fetch(`http://localhost:5000/products/${productInfo?.category}`)
             .then(res => res.json())
             .then(data => console.log(data))
     }
@@ -84,7 +83,8 @@ const AddProduct = () => {
                             </div>
                             <div>
                                 <input type="text"
-                                    value={date}
+                                    defaultValue={date}
+                                    disabled
                                     className="input w-full border rounded-md border-gray-300" />
                             </div>
 

@@ -13,17 +13,27 @@ const Signup = () => {
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
 
-
+    const saveuser = (name, email, role) => {
+        const user = { name, email, role }
+        console.log(user);
+        fetch('http://localhost:5000/users', {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+    }
 
     const handleSubmit = event => {
         event.preventDefault()
-
         const name = event.target.name.value
         const email = event.target.email.value
         const password = event.target.password.value
         const image = event.target.image.files[0]
         const role = event.target.role.value
-
 
         const formData = new FormData()
         formData.append('image', image)
@@ -55,19 +65,6 @@ const Signup = () => {
             })
             .catch(err => toast.error(err))
 
-        const saveuser = (name, email, role) => {
-            const user = { name, email, role }
-            console.log(user);
-            fetch('https://used-products-server-iftakhar711.vercel.app/users', {
-                method: 'PUT',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(user)
-            })
-                .then(res => res.json())
-                .then(data => console.log(data))
-        }
     }
 
     const handleGoogleSignin = () => {
